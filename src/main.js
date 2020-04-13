@@ -4,7 +4,7 @@ import {router} from './router';
 import store from './store';
 
 
-import './assets/css/common.css';
+import './assets/css/common.less';
 import '@service/element-ui';
 import VueHighlightJS from 'vue-highlightjs';
 import 'highlight.js/styles/monokai-sublime.css'

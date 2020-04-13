@@ -2,6 +2,7 @@ const path = require("path");
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
+    publicPath: './',
     chainWebpack: config => {
         // 修复HMR
         config.resolve.symlinks(true);
