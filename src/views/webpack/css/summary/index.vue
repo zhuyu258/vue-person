@@ -46,8 +46,12 @@
 
         
         #转换后的hash值应用到页面中
-        css-loader还返回了一个对象表示原类名和转换后的hash类名一一对应，可通过style-loader
-        直接获取到这个对应关系的对象，然后直接通过原类名可以使用对应的样式
+        css-loader还返回了一个对象表示原类名和转换后的hash类名一一对应
+        1. 可通过style-loader直接获取到这个对应关系的对象，然后直接通过原类名
+        可以使用对应的样式(需要通过js给元素添加类样式)
+
+        2. 通过mini-css-extract-plugin插件将css分离为一个单独的css文件，自动会
+        添加到html中，然后在js中引入通过js给元素添加类样式
 
          <img src="@img/css2.png" alt="">
 
@@ -55,6 +59,19 @@
 
         <img src="@img/css4.png" alt=""> 
         <img src="@img/css3.png" alt="">
+
+        eg:
+        import * as obj from './js/a'
+        import style1 from './style/index.css'
+        import style2 from './style/details.css'
+        import style3 from './style/index.pcss'
+        import img from "./js/img"
+        变量 a = 1;
+        console.log(style1,style2,style3)
+        // 应用到元素上
+        document.getElementsByClassName('p')[0].className = style3.p
+        document.getElementsByClassName('h5')[0].className = style1.h5
+        document.getElementsByClassName('main')[0].className = style1.main
 
         不需要进行css module转换的可以使用:global限制
         eg:

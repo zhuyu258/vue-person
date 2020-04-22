@@ -9,6 +9,19 @@ const routesList = [
     id:"webpack",
     children:[
       {
+        label:'js',
+        id:'js',
+        path:"/js",
+        children:[
+          {
+            label:'babel',
+            id:'babel',
+            path:"/babel",
+            component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/js/summary'),
+          },
+        ]
+      },
+      {
         label:'css',
         id:'css',
         path:"/css",
