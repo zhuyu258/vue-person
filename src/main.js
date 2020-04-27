@@ -11,7 +11,7 @@ import 'highlight.js/styles/monokai-sublime.css'
 Vue.use(VueHighlightJS);
 Vue.use(MetaInfo)  // 使用meta
 Vue.config.productionTip = false;
-
+console.log()
 
 new Vue({
   router,
