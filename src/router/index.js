@@ -9,6 +9,19 @@ const routesList = [
     id:"webpack",
     children:[
       {
+        label:'performance',
+        id:'performance',
+        path:"/performance",
+        children:[
+          {
+            label:'performance',
+            id:'performance',
+            path:"/performance",
+            component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/performance/summary'),
+          },
+        ]
+      },
+      {
         label:'js',
         id:'js',
         path:"/js",
@@ -87,7 +100,7 @@ function addRoute(arr){
 addRoute(routesList);
 
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

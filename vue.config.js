@@ -1,4 +1,5 @@
 const path = require("path");
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
@@ -14,6 +15,19 @@ module.exports = {
             .set("@view", resolve("src/views"))
             .set("@router", resolve("src/router"))
             .set("@service", resolve("src/service"))
+    },
+    configureWebpack: {
+      plugins: [
+          new PrerenderSpaPlugin(
+              // npm run build的输出目录
+              path.resolve(__dirname, './dist'),
+              // 需要进行预渲染的页面
+              ['/', '/summary','/babel','/performance','/postcss'], {
+                  captureAfterTime: 5000,
+                  maxAttempts: 10,
+              }
+          )
+      ]
     },
     devServer: {
       // overlay: { // 让浏览器 overlay 同时显示警告和错误
