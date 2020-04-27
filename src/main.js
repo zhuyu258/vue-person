@@ -10,7 +10,7 @@ import VueHighlightJS from 'vue-highlightjs';
 import 'highlight.js/styles/monokai-sublime.css'
 Vue.use(VueHighlightJS);
 Vue.config.productionTip = false;
-
+console.log()
 
 new Vue({
   router,
