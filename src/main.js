@@ -16,5 +16,8 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  mounted(){ // vue页面挂载之后进行预渲染
+    document.dispatchEvent(new Event('render-active'))
+  }
 }).$mount('#app')

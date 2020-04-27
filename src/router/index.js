@@ -14,6 +14,12 @@ const routesList = [
         path:"/performance",
         children:[
           {
+            label:'prerenderSpaPlugin',
+            id:'prerenderSpaPlugin',
+            path:"/prerenderSpaPlugin",
+            component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/performance/prerender-spa-plugin'),
+          },
+          {
             label:'performance',
             id:'performance',
             path:"/performance",
@@ -72,13 +78,13 @@ const routesList = [
 const routes = [
   {
     path: '*',
-    redirect: '/home'
+    redirect: '/summary'
   },
   // 首页
   {
-    path: '/home',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/home'),
+    path: '/summary',
+    name: 'summary',
+    component: () => import(/* webpackChunkName: "home" */ '../views/webpack/css/summary'),
   },
   // { 
   //   path: '/brand-detail/:code', 

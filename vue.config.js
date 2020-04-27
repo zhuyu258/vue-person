@@ -1,6 +1,7 @@
 const path = require("path");
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const resolve = dir => path.join(__dirname, dir);
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 
 module.exports = {
     publicPath: './',
@@ -18,15 +19,21 @@ module.exports = {
     },
     configureWebpack: {
       plugins: [
-          new PrerenderSpaPlugin(
+          new PrerenderSpaPlugin({
               // npm run build的输出目录
-              path.resolve(__dirname, './dist'),
+              staticDir: path.join(__dirname, 'dist'),
               // 需要进行预渲染的页面
-              ['/', '/summary','/babel','/performance','/postcss'], {
-                  captureAfterTime: 5000,
-                  maxAttempts: 10,
-              }
-          )
+              routes: ['/summary','/babel','/performance',],
+              renderer: new Renderer({
+                inject: {
+                  foo: 'bar'
+                },
+                headless: false, 
+                renderAfterDocumentEvent: 'render-active' 
+                // renderAfterElementExists: '.container', 
+                // renderAfterTime: 5000 
+              })
+          })
       ]
     },
     devServer: {
