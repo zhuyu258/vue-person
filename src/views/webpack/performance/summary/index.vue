@@ -118,7 +118,8 @@
        <p>6. 如果这些模块无法执行那么就直接执行localtion.reload重新加载页面</p>
        <p>注意：</p>
        <p>样式也可以进行热更新，但是通过mini-css-extract-plugin插件生成单独文件的样式不能进行热更新，因为
-          热更新发生在代码运行时期，而mini-css-extract-plugin插件生成单独css文件发生在构建时期
+          热更新发生在代码运行时期，而mini-css-extract-plugin插件生成单独css文件发生在构建时期,style-loader
+          的样式是可以进行热更新
        </p>
        <p></p>
        <h2>2. 传输性能</h2>
