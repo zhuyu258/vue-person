@@ -23,15 +23,15 @@ module.exports = {
               // npm run build的输出目录
               staticDir: path.join(__dirname, 'dist'),
               // 需要进行预渲染的页面
-              routes: ['/summary','/babel','/performance',],
+              routes: ['/','/babel'],
               renderer: new Renderer({
                 inject: {
                   foo: 'bar'
                 },
                 headless: false, 
-                renderAfterDocumentEvent: 'render-active' 
+                // renderAfterDocumentEvent: 'render-active' 
                 // renderAfterElementExists: '.container', 
-                // renderAfterTime: 5000 
+                renderAfterTime: 5000 
               })
           })
       ]

@@ -9,6 +9,19 @@ const routesList = [
     id:"webpack",
     children:[
       {
+        label:'js',
+        id:'js',
+        path:"/js",
+        children:[
+          {
+            label:'babel',
+            id:'babel',
+            path:"/babel",
+            component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/js/summary'),
+          },
+        ]
+      },
+      {
         label:'performance',
         id:'performance',
         path:"/performance",
@@ -20,23 +33,10 @@ const routesList = [
             component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/performance/prerender-spa-plugin'),
           },
           {
-            label:'performance',
-            id:'performance',
-            path:"/performance",
+            label:'summary',
+            id:'performance-summary',
+            path:"/performance-summary",
             component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/performance/summary'),
-          },
-        ]
-      },
-      {
-        label:'js',
-        id:'js',
-        path:"/js",
-        children:[
-          {
-            label:'babel',
-            id:'babel',
-            path:"/babel",
-            component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/js/summary'),
           },
         ]
       },
@@ -78,13 +78,13 @@ const routesList = [
 const routes = [
   {
     path: '*',
-    redirect: '/summary'
+    redirect: '/babel'
   },
   // 首页
   {
-    path: '/summary',
-    name: 'summary',
-    component: () => import(/* webpackChunkName: "home" */ '../views/webpack/css/summary'),
+    path: '/babel',
+    name: 'babel',
+    component: () => import(/* webpackChunkName: "home" */ '../views/webpack/js/summary'),
   },
   // { 
   //   path: '/brand-detail/:code', 
@@ -104,7 +104,7 @@ function addRoute(arr){
   }
 }
 addRoute(routesList);
-
+console.log(routes)
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
