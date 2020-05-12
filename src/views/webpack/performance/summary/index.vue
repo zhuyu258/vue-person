@@ -2,7 +2,7 @@
     <div>
        <h1>性能优化</h1>
        <p>性能优化主要从以下几个方面入手：</p>
-       <h2>1. 构建性能</h2>
+       <p>1. 构建性能</p>
        <p>2. 传输性能</p>
        <p>3. 运行性能</p>
        <h2>1. 构建性能</h2>
@@ -121,13 +121,100 @@
           热更新发生在代码运行时期，而mini-css-extract-plugin插件生成单独css文件发生在构建时期,style-loader
           的样式是可以进行热更新
        </p>
-       <p></p>
        <h2>2. 传输性能</h2>
        <p>传输性能是指：文件从服务端传输到客户端的过程所需要的时间</p>
        <p>传输性能的提升可以缩短从页面请求到呈现的时间，可以从以下几个方面考虑：</p>
-       <p> 2.1 总传输量：将所有的传输文件内容都加起来就是总传输</p>
-       <p> 2.2 文件数量：需要传输的所有文件数量 </p>
-       <p> 2.3 浏览器缓存： 通过设置可以使得浏览器缓存传输的文件，被缓存的文件再次获取就会从缓存中获取</p>
+       <p> - 总传输量：将所有的传输文件内容都加起来就是总传输</p>
+       <p> - 文件数量：需要传输的所有文件数量 </p>
+       <p> - 浏览器缓存： 通过设置可以使得浏览器缓存传输的文件，被缓存的文件再次获取就会从缓存中获取</p>
+       <h3>2.1 打包之后包太大可以分包处理</h3>
+       <p>解决的问题：</p>
+       <p>一个文件包太大，导致网络响应很慢</p>
+       <p></p>
+       <h4> 2.1.1 手动分包</h4>
+       <p>基本思路：</p>
+       <p>- 单独的打包公共模块</p>
+       <p>- 公共模块会被打包成动态链接库，并生成资源清单</p>
+       <p>- 根据入口模块进行正常的打包</p>
+       <p>- 在html页面中手动引入单独打包的公共模块</p>
+       <p>步骤：</p>
+       <p>1. 创建webpack.dll.config.js文件</p>
+       <p>用于配置要单独打包的文件，暴露出变量名在全局中</p>
+       <pre class="code">
+          // 手动单独打包的配置
+          module.exports = {
+              mode: "production",
+              entry: { // 需要单独打包的文件
+                  jquery: ["jquery"],
+                  lodash: ["lodash"]
+              },
+              output: {
+                  filename: "dll/[name].js",
+                  library: "[name]" // 打包之后暴露的变量名
+              },
+              plugins: [
+                  // 生成资源清单
+                  new webpack.DllPlugin({
+                      path: path.resolve(__dirname,"dll","[name].manifest.json"), // 资源清单保存的位置
+                      name: "[name]" // 资源清单中，暴露的变量名
+                  })
+              ]
+          }
+       </pre>
+       <p>2. html页面手动引入单独的打包文件</p>
+       <pre class="code">
+         <script src="./dll/jquery.js"></script>
+         <script src="./dll/lodash.js"></script>
+       </pre>
+       <p>3. webpack.config.js中设置clean-webpack-plugin插件</p>
+       <p>如果使用了clean-webpack-plugin这个插件就需要重新配置，防止每次打包都清空了单独打包的文件</p>
+       <pre class="code">
+          plugins: [ // 插件
+            new CleanWebpackPlugin({ // 打包前清空目录
+                // 排除掉dll目录本身和它里面的文件
+                cleanOnceBeforeBuildPatterns: ["**/*", '!dll', '!dll/*']
+            }),  
+          ]
+       </pre>
+       <p>4. webpack.config.js中使用资源清单</p>
+       <p>通过webpack.DllReferencePlugin插件使用生成的资源清单，供正常打包的时候webpack能够根据清单
+          不打包清单中的文件
+       </p>
+       <pre class="code">
+          module.exports = {
+            plugins:[
+              new webpack.DllReferencePlugin({
+                manifest: require("./dll/jquery.manifest.json")
+              }),
+              new webpack.DllReferencePlugin({
+                manifest: require("./dll/lodash.manifest.json")
+              })
+            ]
+          }
+       </pre>
+       <p>5. package.json中配置打包命令</p>
+       <p>通过npm run dll执行根据指定配置文件进行打包</p>
+       <pre class="code"> 
+         "scripts": {
+            "dll": "webpack --config webpack.dll.config.js"
+          },
+       </pre>
+       <p>注意：  </p>
+       <p>1.资源清单不参与运行，可以不放在dist目录下</p>
+       <p>2.在html页面中需要手动引入单独打包的文件</p>
+       <p>3.不要对小型的包进行分包处理</p>
+       <p>4.如果是第三方库可以通过CDN引入，无需手动分包</p>
+       <p>优点：</p>
+       <p>1.提高了打包速度</p>
+       <p>2.提高了网络响应速度</p>
+       <p>3.有利于浏览器缓存</p>
+       <p>缺点：</p>
+       <p>1.配置繁琐</p>
+       <p>2.复杂的依赖关系模块操作比较繁琐</p>
+       <p>打包结果</p>
+       <p>先运行单独打包的命令npm run dll</p>
+       <p>再运行项目打包的命令npm run build</p>
+       <img src="@img/fb.png" alt="">
        <h2>3. 运行性能</h2>
        <p>编写高效的代码</p>
 
