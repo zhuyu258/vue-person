@@ -28,7 +28,7 @@ module.exports = {
                 inject: {
                   foo: 'bar'
                 },
-                headless: true, 
+                headless: true, // 启动浏览器，jenkins自动打包会出问题，因为nginx打不开浏览器
                 // renderAfterDocumentEvent: 'render-active' 
                 // renderAfterElementExists: '.container', 
                 renderAfterTime: 5000 
