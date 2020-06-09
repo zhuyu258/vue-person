@@ -28,7 +28,7 @@ module.exports = {
                 inject: {
                   foo: 'bar'
                 },
-                headless: false, 
+                headless: true, 
                 // renderAfterDocumentEvent: 'render-active' 
                 // renderAfterElementExists: '.container', 
                 renderAfterTime: 5000 
