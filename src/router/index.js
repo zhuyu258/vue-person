@@ -22,7 +22,7 @@ const routesList = [
         ]
       },
       {
-        label:'performance',
+        label:'优化',
         id:'performance',
         path:"/performance",
         children:[
@@ -68,6 +68,45 @@ const routesList = [
             id:'postcss',
             path:"/postcss",
             component: () => import(/* webpackChunkName: "function2" */ '../views/webpack/css/postcss'),
+          },
+        ]
+      },
+    ]
+  },
+  {
+    label:'css',
+    id:'css',
+    path:"/css",
+    children:[
+      {
+        label:'position',
+        id:'position',
+        path:"/position",
+        component: () => import(/* webpackChunkName: "function2" */ '../views/css/position'),
+      },
+    ]
+  },
+  {
+    label:'算法',
+    id:'algorithm',
+    path:"/algorithm",
+    children:[
+      {
+        label:'数据结构',
+        id:'dataStructure',
+        path:"/dataStructure",
+        children:[
+          {
+            label:'总结',
+            id:'summary',
+            path:"/dataStructure/summary",
+            component: () => import(/* webpackChunkName: "function2" */ '../views/algorithm/dataStructure/summary'),
+          },
+          {
+            label:'线性数据结构',
+            id:'linear',
+            path:"/linear",
+            component: () => import(/* webpackChunkName: "function2" */ '../views/algorithm/dataStructure/linear'),
           },
         ]
       },
