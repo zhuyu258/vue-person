@@ -71,6 +71,19 @@ const routesList = [
           },
         ]
       },
+      {
+        label:'实战练习',
+        id:'training',
+        path:"/training",
+        children:[
+          {
+            label:'webpack-react',
+            id:'webpackReact',
+            path:"/webpackReact",
+            component: () => import(/* webpackChunkName: "function1" */ '../views/webpack/training/webpack-react/react'),
+          },
+        ]
+      },
     ]
   },
   {
@@ -109,6 +122,25 @@ const routesList = [
             component: () => import(/* webpackChunkName: "function2" */ '../views/algorithm/dataStructure/linear'),
           },
         ]
+      },
+    ]
+  },
+  {
+    label:'性能优化',
+    id:'performanceHome',
+    path:"/performanceHome",
+    children:[
+      {
+        label:'压缩图片的方式',
+        id:'imgCompress',
+        path:"/imgCompress",
+        component: () => import(/* webpackChunkName: "function1" */ '../views/performance/imgCompress'),
+      },
+      {
+        label:'http压缩',
+        id:'httpCompress',
+        path:"/httpCompress",
+        component: () => import(/* webpackChunkName: "function1" */ '../views/performance/http-compress'),
       },
     ]
   }

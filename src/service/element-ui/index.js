@@ -13,7 +13,7 @@ import {
 	Radio,RadioGroup,
 	Select,Submenu,
     Table,TableColumn,TimeSelect,TimePicker,Tabs,Tree,TabPane,Tag,Tooltip,
-    Divider,Switch,Drawer,Timeline,TimelineItem
+    Divider,Switch,Drawer,Timeline,TimelineItem, Collapse,CollapseItem
 } from 'element-ui';
 
 
@@ -53,6 +53,8 @@ Vue.use(Loading);
 Vue.use(Menu);
 Vue.use(MenuItem);
 Vue.use(Submenu);
+Vue.use(Collapse);
+Vue.use(CollapseItem);
 Vue.use(MenuItemGroup);
 Vue.use(Divider);
 Vue.use(Switch);
