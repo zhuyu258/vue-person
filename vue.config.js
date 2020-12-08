@@ -23,7 +23,7 @@ module.exports = {
               // npm run build的输出目录
               staticDir: path.join(__dirname, 'dist'),
               // 需要进行预渲染的页面
-              routes: ['/','/babel','/position'],
+              routes: ['/','/position'],
               renderer: new Renderer({
                 inject: {
                   foo: 'bar'
