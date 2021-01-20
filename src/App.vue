@@ -2,13 +2,13 @@
   <div id="app">
       <my-header></my-header>
       <div class="container">
-        <el-switch
-          v-model="value"
-          active-color="#13ce66"
-          inactive-color="#ff4949">
-        </el-switch>
         <my-nav  v-show="value"></my-nav>
         <div class="main">
+          <el-switch
+            v-model="value"
+            active-color="#13ce66"
+            inactive-color="#ff4949">
+          </el-switch>
           <router-view/>
         </div>
       </div>
