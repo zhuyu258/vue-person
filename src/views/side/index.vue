@@ -1,10 +1,5 @@
 <template>
   <div class="side">
-    <el-switch
-      v-model="value"
-      active-color="#13ce66"
-      inactive-color="#ff4949">
-    </el-switch>
      <el-tree
       v-show="value"
       :data="routes"
@@ -14,6 +9,11 @@
       @node-click = "route_push"
       :render-content="renderContent">
     </el-tree>
+    <el-switch
+      v-model="value"
+      active-color="#13ce66"
+      inactive-color="#ff4949">
+    </el-switch>
   </div>
 </template>
 
