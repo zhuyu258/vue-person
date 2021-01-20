@@ -3,12 +3,12 @@
       <my-header></my-header>
       <div class="container">
         <my-nav  v-show="value"></my-nav>
-        <div class="main">
-          <el-switch
+        <el-switch
             v-model="value"
             active-color="#13ce66"
             inactive-color="#ff4949">
           </el-switch>
+        <div class="main">
           <router-view/>
         </div>
       </div>
