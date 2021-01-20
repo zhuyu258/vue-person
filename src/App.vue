@@ -2,7 +2,16 @@
   <div id="app">
       <my-header></my-header>
       <div class="container">
-        <my-nav></my-nav>
+        <el-tree
+          v-show="value"
+          :data="routes"
+          node-key="id"
+          :default-expand-all="false"
+          :expand-on-click-node="true"
+          @node-click = "route_push"
+          :render-content="renderContent">
+        </el-tree>
+        <my-nav  v-show="value"></my-nav>
         <div class="main">
           <router-view/>
         </div>
@@ -19,7 +28,8 @@ export default {
   },
   data () {
     return {
-      publicPath: process.env.BASE_URL
+      publicPath: process.env.BASE_URL,
+      value: true
     }
   }
 }
