@@ -2,15 +2,11 @@
   <div id="app">
       <my-header></my-header>
       <div class="container">
-        <el-tree
-          v-show="value"
-          :data="routes"
-          node-key="id"
-          :default-expand-all="false"
-          :expand-on-click-node="true"
-          @node-click = "route_push"
-          :render-content="renderContent">
-        </el-tree>
+        <el-switch
+          v-model="value"
+          active-color="#13ce66"
+          inactive-color="#ff4949">
+        </el-switch>
         <my-nav  v-show="value"></my-nav>
         <div class="main">
           <router-view/>
