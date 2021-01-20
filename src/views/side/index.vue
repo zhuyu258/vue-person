@@ -1,6 +1,12 @@
 <template>
   <div class="side">
+    <el-switch
+      v-model="value"
+      active-color="#13ce66"
+      inactive-color="#ff4949">
+    </el-switch>
      <el-tree
+      v-show="value"
       :data="routes"
       node-key="id"
       :default-expand-all="false"
@@ -26,7 +32,8 @@ export default {
     },
     data(){
       return {
-        routes:[]
+        routes:[],
+        value: true
       }
     },
     methods:{

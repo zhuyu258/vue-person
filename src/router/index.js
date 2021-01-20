@@ -143,7 +143,64 @@ const routesList = [
         component: () => import(/* webpackChunkName: "function1" */ '../views/performance/http-compress'),
       },
     ]
-  }
+  },
+  {
+    label:'vue3',
+    id:'vue3',
+    path:"/vue3",
+    children:[
+      {
+        label:'路由变化',
+        id:'route',
+        path:"/route",
+        component: () => import(/* webpackChunkName: "function2" */ '../views/vue3/router'),
+      },
+      {
+        label:'性能方面',
+        id:'performance',
+        path:"/performance",
+        component: () => import(/* webpackChunkName: "function2" */ '../views/vue3/performance'),
+      },
+      {
+        label:'vite',
+        id:'vite',
+        path:"/vite",
+        component: () => import(/* webpackChunkName: "function2" */ '../views/vue3/vite'),
+      },
+      {
+        label:'api',
+        id:'api',
+        path:"/api",
+        component: () => import(/* webpackChunkName: "function2" */ '../views/vue3/api'),
+      },
+    ]
+  },
+  {
+    label:'面试题',
+    id:'InterviewQuest',
+    path:"/InterviewQuest",
+    children:[
+      {
+        label:'面试题',
+        id:'InterviewQuest',
+        path:"/InterviewQuest",
+        component: () => import(/* webpackChunkName: "function2" */ '../views/interviewQuest/index'),
+      },
+    ]
+  },
+  {
+    label:'长列表优化',
+    id:'LongList',
+    path:"/LongList",
+    children:[
+      {
+        label:'长列表优化',
+        id:'LongList',
+        path:"/LongList",
+        component: () => import(/* webpackChunkName: "function2" */ '../views/longList/index'),
+      },
+    ]
+  },
 ]
 
 const routes = [
