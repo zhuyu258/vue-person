@@ -4,6 +4,7 @@
       <div class="container">
         <my-nav  v-show="value"></my-nav>
         <el-switch
+            class="switch"
             v-model="value"
             active-color="#13ce66"
             inactive-color="#ff4949">
@@ -56,5 +57,10 @@ export default {
   background-color:#e6e6e6;;
   left: 0;
   top: -10px;
+}
+.switch{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
 }
 </style>
